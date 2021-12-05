@@ -12,8 +12,28 @@ class CartItem extends React.Component{
         // this.increaseQuantity=this.increaseQuantity.bind(this);
     }
     increaseQuantity=()=>{   //Using arrow function for binding
-        console.log('this',this.state);
+        //set state form 1
+        // this.setState({    //method from React.Component
+        //     qty:this.state.qty + 1
+        // });
+        // // console.log('this',this.state);
+
+        //set state form 2 ---if previous requirewd use this
+        this.setState((prevState)=>{
+            return {
+                qty:prevState.qty + 1
+            }
+        })
     }
+
+    decreaseQuantity=()=>{
+        this.setState((prevState)=>{
+            return{
+                qty:prevState.qty==0? prevState.qty=0:prevState.qty -1
+            }
+        })
+    }
+
     render(){
         const {price,title,qty}=this.state; //object destructuring
         return(
@@ -32,7 +52,11 @@ class CartItem extends React.Component{
                          src="https://cdn-icons.flaticon.com/png/128/3303/premium/3303893.png?token=exp=1638699626~hmac=d4c5d2c46ebf84ddf8c2684739e73bc9"
                          onClick={this.increaseQuantity}
                          />
-                        <img alt="decrease" className="action-icons" src="https://cdn-icons.flaticon.com/png/128/2740/premium/2740679.png?token=exp=1638699430~hmac=b5f9b40a8538a3590449617081723172"/>
+                        <img alt="decrease"
+                         className="action-icons"
+                         src="https://cdn-icons.flaticon.com/png/128/2740/premium/2740679.png?token=exp=1638699430~hmac=b5f9b40a8538a3590449617081723172"
+                         onClick={this.decreaseQuantity} 
+                          />
                         <img alt="delete" className="action-icons" src="https://cdn-icons.flaticon.com/png/128/2907/premium/2907762.png?token=exp=1638699698~hmac=32f5bb5bf48c1334181302bad8d7f25e"/>
                     </div>
 
