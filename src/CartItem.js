@@ -1,16 +1,7 @@
 import React from 'react';
 
 class CartItem extends React.Component{
-    constructor(){   //defining state object
-        super();   //defining constructor of parent class React.Component
-        this.state={ //A state is a way to store your local data for that particular component.
-            price:999,
-            title:'Mobile Phone',
-            qty:1,
-            img:''
-        }
-        // this.increaseQuantity=this.increaseQuantity.bind(this);
-    }
+    
     increaseQuantity=()=>{   //Using arrow function for binding
         //set state form 1
         // this.setState({    //method from React.Component
@@ -44,7 +35,8 @@ class CartItem extends React.Component{
     }
 
     render(){
-        const {price,title,qty}=this.state; //object destructuring
+        console.log('this.props',this.props);
+        const {price,title,qty}=this.props.product; //object destructuring
         return(
             <div className="cart-item">
                 <div className="left-block">
