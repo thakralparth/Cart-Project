@@ -1,47 +1,15 @@
 import React from 'react';
 
-class CartItem extends React.Component{
+const CartItem = (props) => {
+
     
-    increaseQuantity=()=>{   //Using arrow function for binding
-        //set state form 1
-        // this.setState({    //method from React.Component
-        //     qty:this.state.qty + 1
-        // });
-        // // console.log('this',this.state);
-
-        //set state form 2 ---if previous requirewd use this
-        this.setState((prevState)=>{
-            return {
-                qty:prevState.qty + 1
-            }
-        })
-
         
-            
-        };
-    
-
-    decreaseQuantity=()=>{
-        this.setState((prevState)=>{
-            const {qty}=this.state;
-
-            if(qty===0){
-                return;
-            }
-            return{
-                qty:prevState.qty -1
-            }
-        })
-    }
-
-    render(){
-        console.log('this.props',this.props);
-        const {price,title,qty}=this.props.product; //object destructuring
+        const {price,title,qty}=props.product; //object destructuring
         const {product,
             onIncreaseQuantity,
             onDecreaseQuantity,
             onDeleteProduct
-            }=this.props;
+            }=props;
         return(
             <div className="cart-item">
                 <div className="left-block">
@@ -73,7 +41,7 @@ class CartItem extends React.Component{
                 </div>
             </div>
         );
-    }
+    
 }
 
 //In JSX we can't add styling using CSS so we use javascript object to add styling
