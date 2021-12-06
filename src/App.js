@@ -12,21 +12,21 @@ class App extends React.Component{
                 price:999,
                 title:'Mobile Phone',
                 qty:1,
-                img:'',
+                img:'https://images.unsplash.com/photo-1580910051074-3eb694886505?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bW9iaWxlJTIwcGhvbmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
                 id:1
             },
             {
                 price:99,
                 title:'Watch',
                 qty:5,
-                img:'',
+                img:'https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2F0Y2h8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60',
                 id:2
             },
             {
                 price:99999,
                 title:'Laptop',
                 qty:2,
-                img:'',
+                img:'https://images.unsplash.com/photo-1541807084-5c52b6b3adef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8bGFwdG9wfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60',
                 id:3
             }
         ]
@@ -83,16 +83,28 @@ getCartCount=()=>{
   return count;
 }
 
+getCartTotal=()=>{
+  const {products}=this.state;
+
+  let cartTotal =0;
+  products.forEach((product)=>{
+    cartTotal = cartTotal + product.qty * product.price;
+  })
+
+  return cartTotal;
+}
+
   render(){
     const {products}=this.state;
       return (
         <div className="App">
-        <Navbar count={this.getCartCount()}/>
-        <Cart 
-        products={products }
-        onIncreaseQuantity={this.handleIncreaseQuantity}
-        onDecreaseQuantity={this.handleDecreaseQuantity}
-        onDeleteProduct={this.handleDeleteProduct}/>
+            <Navbar count={this.getCartCount()}/>
+            <Cart 
+            products={products }
+            onIncreaseQuantity={this.handleIncreaseQuantity}
+            onDecreaseQuantity={this.handleDecreaseQuantity}
+            onDeleteProduct={this.handleDeleteProduct}/>
+            <div style={{fontSize:20,padding:10}}>TOTAL: {this.getCartTotal()}</div>
         </div>
       );
   }
